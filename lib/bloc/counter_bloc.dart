@@ -10,20 +10,18 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
       : super(const CounterState(
           firstCount: 0,
           secondCount: 0,
-        ));
-
-  @override
-  Stream<CounterState> mapEventToState(CounterEvent event) async* {
-    if (event is IncrementedFirstCounterEvent) {
-      yield CounterState(
-        firstCount: state.firstCount + 1,
-        secondCount: state.secondCount,
-      );
-    } else {
-      yield CounterState(
-        firstCount: state.firstCount,
-        secondCount: state.secondCount + 1,
-      );
-    }
+        )) {
+    on<IncrementedFirstCounterEvent>((event, emit) => {
+          emit(CounterState(
+            firstCount: state.firstCount + 1,
+            secondCount: state.secondCount,
+          ))
+        });
+    on<IncrementedSecondCounterEvent>((event, emit) => {
+          emit(CounterState(
+            firstCount: state.firstCount,
+            secondCount: state.secondCount + 1,
+          ))
+        });
   }
 }
