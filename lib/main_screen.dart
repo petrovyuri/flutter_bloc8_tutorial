@@ -30,17 +30,13 @@ class _MainScreenView extends StatelessWidget {
                 _AppCounter(
                   count: state.firstCount,
                   increment: () {
-                    context
-                        .read<CounterBloc>()
-                        .add(IncrementedFirstCounterEvent());
+                    context.read<CounterBloc>().incrementFirst();
                   },
                 ),
                 _AppCounter(
                   count: state.secondCount,
                   increment: () {
-                    context
-                        .read<CounterBloc>()
-                        .add(IncrementedSecondCounterEvent());
+                    context.read<CounterBloc>().incrementSecond();
                   },
                 ),
               ],
